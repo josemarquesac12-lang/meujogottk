@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!-- HTML para um jogo simples de adivinhação -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Adivinhação - GinHub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #gameContainer {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input[type="number"] {
+      width: 80px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 6px 12px;
+      font-size: 16px;
+      margin-left: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="gameContainer">
+    <h1>Jogo da Adivinhação</h1>
+    <p>Advinhe um número entre 1 e 10:</p>
+    <input type="number" id="guessInput" min="1" max="10">
+    <button onclick="playGame()">Chutar</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // Gera número aleatório entre 1 e 10
+    const targetNumber = Math.floor(Math.random() * 10) + 1;
+
+    function playGame() {
+      const guess = parseInt(document.getElementById('guessInput').value);
+      const result = document.getElementById('result');
+
+      if (isNaN(guess) || guess < 1 || guess > 10) {
+        result.textContent = "Por favor, insira um número válido entre 1 e 10.";
+        result.style.color = "red";
+        return;
+      }
+
+      if (guess === targetNumber) {
+        result.textContent = "Parabéns! Você acertou!";
+        result.style.color = "green";
+      } else if (guess > targetNumber) {
+        result.textContent = "Tente um número menor.";
+        result.style.color = "orange";
+      } else {
+        result.textContent = "Tente um número maior.";
+        result.style.color = "orange";
+      }
+    }
+  </script>
+</body>
+
+</html>
